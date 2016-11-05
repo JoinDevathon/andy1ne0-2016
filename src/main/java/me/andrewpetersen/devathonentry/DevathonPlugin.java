@@ -44,6 +44,7 @@ public class DevathonPlugin extends JavaPlugin {
         DevathonPlugin.setInstance(this);
         this.getServer().getLogger().log(Level.INFO, "The Devathon project plugin has been initialized. ");
         this.getServer().getLogger().log(Level.INFO, "For usage instructions (how to create the machine), please see the README.md file in the Git repo. ");
+        this.registerListeners();
     }
 
     @Override
