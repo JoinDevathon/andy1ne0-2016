@@ -7,6 +7,7 @@ package me.andrewpetersen.devathonentry.api;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
+import jdk.nashorn.internal.ir.Block;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,6 +19,16 @@ import lombok.Setter;
 public class MachineBlock {
 
     private MachineLevel masterLevel;
+
+    private Block block;
+
+    private boolean explodeEffect = false;
+
+    private boolean smokeEffect = false;
+
+    private boolean sparkleEffect = false;
+
+    private boolean soundEffects = false;
 
     /**
      * The default constructor for this class, used to set various variables.
