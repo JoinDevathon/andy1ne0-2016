@@ -1,7 +1,7 @@
 name: Devathon Project
-description: A project for the Devathon contest
+description: A project for the Devathon contest (machine theme).
 version: 1.0.0
-author: Your Name Here
+author: TheYellowCreepz
 
-main: org.devathon.contest2016.DevathonPlugin
+main: me.andrewpetersen.devathonentry.DevathonPlugin
 
