@@ -39,6 +39,13 @@ public class DevathonPlugin extends JavaPlugin {
         this.getServer().getLogger().log(Level.INFO, Strings.VERBOSE_PREFIX + msg);
     }
 
+    /**
+     * The method where all Bukkit listeners should be registered.
+     */
+    public void registerListeners() {
+        // Fill in with any event listeners later on.
+    }
+
     @Override
     public void onEnable() {
         DevathonPlugin.setInstance(this);
