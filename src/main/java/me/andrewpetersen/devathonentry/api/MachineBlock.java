@@ -7,9 +7,14 @@ package me.andrewpetersen.devathonentry.api;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The wrapper class for any blocks that need to be generated when creating a machine.
  */
+@Getter
+@Setter
 public class MachineBlock {
 
     private MachineLevel masterLevel;
@@ -21,24 +26,6 @@ public class MachineBlock {
      */
     public MachineBlock(MachineLevel master) {
         this.setMasterLevel(master);
-    }
-
-    /**
-     * Get the MachineLevel instance that correlates to this machine block.
-     *
-     * @return The plugin instance.
-     */
-    public MachineLevel getMasterLevel() {
-        return this.masterLevel;
-    }
-
-    /**
-     * Set the MachineLevel instance for this block.
-     *
-     * @param masterLevel The master level instance. .
-     */
-    private void setMasterLevel(MachineLevel masterLevel) {
-        this.masterLevel = masterLevel;
     }
 
 }

@@ -1,21 +1,14 @@
 package me.andrewpetersen.devathonentry;
 
+import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public class DevathonPlugin extends JavaPlugin {
 
+    @Getter
     private static DevathonPlugin instance = null;
-
-    /**
-     * Get the Devathon Instance.
-     *
-     * @return The plugin instance.
-     */
-    public static DevathonPlugin getInstance() {
-        return DevathonPlugin.instance;
-    }
 
     /**
      * Set the DevathonPlugin instance. Throws an IllegalStateException if the instance has already been set.
