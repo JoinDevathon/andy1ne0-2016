@@ -29,6 +29,8 @@ public class MachineBlock {
 
     private boolean sparkleEffect = false;
 
+    private Material material = Material.AIR;
+
     /**
      * The default constructor for this class, used to set various variables.
      *
@@ -39,6 +41,7 @@ public class MachineBlock {
     public MachineBlock(MachineLevel master, Block block, Material m) {
         this.setMasterLevel(master);
         this.setBlock(block);
+        this.setMaterial(m);
     }
 
     /**
@@ -54,6 +57,7 @@ public class MachineBlock {
     public MachineBlock(MachineLevel master, Block block, Material m, boolean explodeEffect, boolean smokeEffect, boolean sparkleEffect) {
         this.setMasterLevel(master);
         this.setBlock(block);
+        this.setMaterial(m);
         this.setExplodeEffect(explodeEffect);
         this.setSmokeEffect(smokeEffect);
         this.setSparkleEffect(sparkleEffect);

@@ -16,6 +16,8 @@ public class Strings {
 
     public static final String FAILED_MACHINE_CREATION = ChatColor.GRAY + "" + ChatColor.ITALIC + "Ye didn't make the machine properly. Harambe is disappointed...";
     public static final String META_FLAG_UNBREAKABLE = "devathon_breakable";
+    public static final String CREATING_MACHINE_MESSAGE = ChatColor.GOLD + "" + ChatColor.ITALIC + "Ye hath summoned the legacy of thy lord Harambe... ";
+    public static final String FINISHED_MACHINE_BUILD_MESSAGE = ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Thou hath awoken Harambe. ";
     static final String VERBOSE_PREFIX = "[VERBOSE] ";
 
 }

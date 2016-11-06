@@ -7,9 +7,18 @@ package me.andrewpetersen.devathonentry.util;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import org.bukkit.Location;
-import org.bukkit.Material;
+import me.andrewpetersen.devathonentry.DevathonPlugin;
+import me.andrewpetersen.devathonentry.Strings;
+import me.andrewpetersen.devathonentry.api.MachineBlock;
+import me.andrewpetersen.devathonentry.api.MachineLevel;
+import me.andrewpetersen.devathonentry.levels.FirstMachineLevel;
+import me.andrewpetersen.devathonentry.levels.SecondMachineLevel;
+import me.andrewpetersen.devathonentry.levels.ThirdMachineLevel;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
 
 /**
  * A static utility class, intended to be used in the creation of machines.
@@ -28,7 +37,45 @@ public final class MachineBuilder {
      * @param axisLocation The axis location.
      * @param pl The player who is having their machine built.
      */
-    public static void buildMachine(Location axisLocation, Player pl) {
+    public static void buildMachine(Location axisLocation, final Player pl) {
+        pl.sendMessage(Strings.CREATING_MACHINE_MESSAGE);
+        pl.playSound(pl.getLocation(), Sound.ENTITY_BOBBER_THROW, 5, 5);
+
+        ArrayList<MachineBlock> blocks = new ArrayList<>();
+
+        ArrayList<MachineLevel> levels = new ArrayList<>();
+
+        levels.add(new FirstMachineLevel(DevathonPlugin.getInstance()));
+        levels.add(new SecondMachineLevel(DevathonPlugin.getInstance()));
+        levels.add(new ThirdMachineLevel(DevathonPlugin.getInstance()));
+
+        levels.stream().forEachOrdered((s) -> blocks.addAll(s.getBlocks(axisLocation)));
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (blocks.size() == 0) {
+                    this.cancel();
+                    if (pl.isOnline()) {
+                        pl.sendMessage(Strings.FINISHED_MACHINE_BUILD_MESSAGE);
+                    }
+                } else {
+                    MachineBlock bl = blocks.get(0);
+                    bl.getBlock().setType(bl.getMaterial());
+                    if (bl.isExplodeEffect()) {
+                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> pl.playEffect(bl.getBlock().getLocation(), Effect.EXPLOSION_LARGE, null));
+                    }
+                    if (bl.isSmokeEffect()) {
+                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> pl.playEffect(bl.getBlock().getLocation(), Effect.SMOKE, 5));
+                    }
+                    if (bl.isSparkleEffect()) {
+                        bl.getBlock().getWorld().spawnParticle(Particle.CRIT_MAGIC, bl.getBlock().getLocation(), 5);
+                        bl.getBlock().getWorld().spawnParticle(Particle.SPELL_INSTANT, bl.getBlock().getLocation(), 5);
+                    }
+                    blocks.remove(bl);
+                }
+            }
+        }.runTaskTimer(DevathonPlugin.getInstance(), 10l, 10l);
 
     }
 
