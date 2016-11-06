@@ -98,7 +98,24 @@ public class ListenerInsertFurnaceItem implements Listener {
                                         Fireball f = (Fireball) it.getWorld().spawnEntity(temp, EntityType.FIREBALL);
                                         f.setDirection(new Vector(x * 5, -2, z * 2));
                                     }
-                                    it.getWorld().getPlayers().stream().forEach(pt -> pt.playSound(it.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 5));
+                                    new BukkitRunnable() {
+                                        @Override
+                                        public void run() {
+                                            it.setVelocity(new Vector(0, 0.9, -1.0));
+                                            it.getWorld().spawnParticle(Particle.TOWN_AURA, it.getLocation(), 5);
+                                            it.getWorld().spawnParticle(Particle.SPELL_WITCH, it.getLocation(), 5);
+                                            it.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, it.getLocation(), 5);
+                                            for (int t = 0; t < 3; t++)
+                                                it.getWorld().playSound(it.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
+                                            new BukkitRunnable() {
+                                                @Override
+                                                public void run() {
+
+                                                }
+                                            }.runTaskLater(getInstance(), 30l);
+                                        }
+                                    }.runTaskLater(getInstance(), 30l);
+                                    it.getWorld().getPlayers().forEach(pt -> pt.playSound(it.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 5));
                                 }
                             }.runTaskLater(getInstance(), 40l);
 
