@@ -20,6 +20,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 /**
  * The listener class for when a machine creation is activated.
@@ -39,6 +40,7 @@ public class ListenerMachineTrigger implements Listener {
     public void onBlockPlace(PlayerInteractEvent evt) {
         if (evt.getClickedBlock() == null) return;
         if (evt.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (evt.getHand() != EquipmentSlot.HAND) return;
         if (evt.getPlayer().getInventory().getItemInMainHand() != null) {
             if (evt.getPlayer().getInventory().getItemInMainHand().getType() == Material.GOLD_HOE) {
                 Player pl = evt.getPlayer();

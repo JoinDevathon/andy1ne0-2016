@@ -31,7 +31,7 @@ public class ThirdMachineLevel extends MachineLevel {
     public ArrayList<MachineBlock> getBlocks(Location axisLocation) {
 
         ArrayList<MachineBlock> b = new ArrayList<>();
-        axisLocation.setY(axisLocation.getY() + 2);
+        axisLocation.setY(axisLocation.getY() + 3);
         Location origin = axisLocation.clone();
         axisLocation.setX(axisLocation.getX() - 1);
         axisLocation.setZ(axisLocation.getZ() - 3);

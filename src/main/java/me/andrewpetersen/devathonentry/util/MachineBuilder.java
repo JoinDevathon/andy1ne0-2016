@@ -15,6 +15,7 @@ import me.andrewpetersen.devathonentry.levels.FirstMachineLevel;
 import me.andrewpetersen.devathonentry.levels.SecondMachineLevel;
 import me.andrewpetersen.devathonentry.levels.ThirdMachineLevel;
 import org.bukkit.*;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -49,28 +50,44 @@ public final class MachineBuilder {
         levels.add(new SecondMachineLevel(DevathonPlugin.getInstance()));
         levels.add(new ThirdMachineLevel(DevathonPlugin.getInstance()));
 
-        levels.stream().forEachOrdered((s) -> blocks.addAll(s.getBlocks(axisLocation)));
+        levels.stream().forEachOrdered((s) -> blocks.addAll(s.getBlocks(axisLocation.clone())));
 
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (blocks.size() == 0) {
                     this.cancel();
+
+                    Location axis = axisLocation.clone();
+                    axis.setZ(axis.getZ() + 4);
+                    axis.getBlock().setType(Material.ENDER_CHEST);
+                    axis.setY(axis.getY() - 2);
+                    axis.getBlock().setType(Material.SIGN_POST);
+                    Sign s = (Sign) axis.getBlock().getState();
+                    s.setLine(0, Strings.SIGN_MACHINE_PREFIX_INTERNAL);
                     if (pl.isOnline()) {
                         pl.sendMessage(Strings.FINISHED_MACHINE_BUILD_MESSAGE);
+                        pl.sendMessage(Strings.FINISHED_MACHINE_INSTRUCTIONS_MESSAGE);
                     }
                 } else {
                     MachineBlock bl = blocks.get(0);
                     bl.getBlock().setType(bl.getMaterial());
                     if (bl.isExplodeEffect()) {
-                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> pl.playEffect(bl.getBlock().getLocation(), Effect.EXPLOSION_LARGE, null));
+                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> {
+                            pl.playEffect(bl.getBlock().getLocation(), Effect.EXPLOSION_LARGE, null);
+                            pl.playSound(bl.getBlock().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 5, 5);
+                        });
                     }
                     if (bl.isSmokeEffect()) {
-                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> pl.playEffect(bl.getBlock().getLocation(), Effect.SMOKE, 5));
+                        bl.getBlock().getLocation().getWorld().getPlayers().stream().filter(pl -> pl.getLocation().distance(bl.getBlock().getLocation()) <= 20).forEach(pl -> {
+                            pl.playEffect(bl.getBlock().getLocation(), Effect.SMOKE, 5);
+                            pl.playSound(bl.getBlock().getLocation(), Sound.ENTITY_FIREWORK_TWINKLE, 5, 5);
+                        });
                     }
                     if (bl.isSparkleEffect()) {
                         bl.getBlock().getWorld().spawnParticle(Particle.CRIT_MAGIC, bl.getBlock().getLocation(), 5);
                         bl.getBlock().getWorld().spawnParticle(Particle.SPELL_INSTANT, bl.getBlock().getLocation(), 5);
+                        pl.playSound(bl.getBlock().getLocation(), Sound.BLOCK_SAND_FALL, 5, 5);
                     }
                     blocks.remove(bl);
                 }
