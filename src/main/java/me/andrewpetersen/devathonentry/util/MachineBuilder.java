@@ -8,6 +8,7 @@ package me.andrewpetersen.devathonentry.util;
  */
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /**
@@ -25,7 +26,7 @@ public final class MachineBuilder {
      * Create a machine at the said location.
      *
      * @param axisLocation The axis location.
-     * @param pl
+     * @param pl The player who is having their machine built.
      */
     public static void buildMachine(Location axisLocation, Player pl) {
 
@@ -39,7 +40,44 @@ public final class MachineBuilder {
      */
     public static boolean validateBuildX(Location axisLocation) {
         Location a = axisLocation.clone();
-        return false;
+        a.setX(a.getX() + 1);
+        a.setZ(a.getZ() - 3);
+        double cloneZ = a.getZ();
+        for (double i = cloneZ; i <= cloneZ + 6; i++) {
+            a.setZ(i);
+            if (a.getBlock() == null) {
+                return false;
+            } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+                return false;
+            }
+        }
+        restoreOrigin(axisLocation, a);
+        a.setX(a.getX() - 1);
+        a.setZ(a.getZ() - 3);
+        cloneZ = a.getZ();
+        for (double i = cloneZ; i <= cloneZ + 6; i++) {
+            a.setZ(i);
+            if (a.getBlock() == null) {
+                return false;
+            } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+                return false;
+            }
+        }
+        restoreOrigin(axisLocation, a);
+        a.setZ(a.getZ() + 3);
+        if (a.getBlock() == null) {
+            return false;
+        } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+            return false;
+        }
+        restoreOrigin(axisLocation, a);
+        a.setZ(a.getZ() - 3);
+        if (a.getBlock() == null) {
+            return false;
+        } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -48,7 +86,7 @@ public final class MachineBuilder {
      * @param axis    The origin axis.
      * @param toReset The axis to be reset.
      */
-    public static void RestoreOrigin(Location axis, Location toReset) {
+    public static void restoreOrigin(Location axis, Location toReset) {
         toReset.setX(axis.getX());
         toReset.setY(axis.getY());
         toReset.setZ(axis.getZ());
@@ -61,7 +99,45 @@ public final class MachineBuilder {
      * @return Whether the ground layout is a valid machine base or not.
      */
     public static boolean validateBuildZ(Location axisLocation) {
-        return false;
+        Location a = axisLocation.clone();
+        a.setZ(a.getZ() + 1);
+        a.setX(a.getX() - 3);
+        double cloneX = a.getX();
+        for (double i = cloneX; i <= cloneX + 6; i++) {
+            a.setX(i);
+            if (a.getBlock() == null) {
+                return false;
+            } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+                return false;
+            }
+        }
+        restoreOrigin(axisLocation, a);
+        a.setZ(a.getZ() - 1);
+        a.setX(a.getX() - 3);
+        cloneX = a.getX();
+        for (double i = cloneX; i <= cloneX + 6; i++) {
+            a.setX(i);
+            if (a.getBlock() == null) {
+                return false;
+            } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+                return false;
+            }
+        }
+        restoreOrigin(axisLocation, a);
+        a.setX(a.getX() + 3);
+        if (a.getBlock() == null) {
+            return false;
+        } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+            return false;
+        }
+        restoreOrigin(axisLocation, a);
+        a.setX(a.getX() - 3);
+        if (a.getBlock() == null) {
+            return false;
+        } else if (a.getBlock().getType() != Material.COBBLESTONE) {
+            return false;
+        }
+        return true;
     }
 
 }
