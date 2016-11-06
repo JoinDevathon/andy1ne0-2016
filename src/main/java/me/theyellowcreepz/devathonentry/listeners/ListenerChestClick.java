@@ -1,8 +1,8 @@
-package me.andrewpetersen.devathonentry.listeners;
+package me.theyellowcreepz.devathonentry.listeners;
 
-import me.andrewpetersen.devathonentry.DevathonPlugin;
-import me.andrewpetersen.devathonentry.Strings;
-import me.andrewpetersen.devathonentry.api.ItemBuilder;
+import me.theyellowcreepz.devathonentry.DevathonPlugin;
+import me.theyellowcreepz.devathonentry.Strings;
+import me.theyellowcreepz.devathonentry.api.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
 
 /*
- * This project has been written by Andrew Petersen, and anyone who has contributed to the source code
+ * This project has been written by Yellow, and anyone who has contributed to the source code
  * (or where otherwise declared). 
  *
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 

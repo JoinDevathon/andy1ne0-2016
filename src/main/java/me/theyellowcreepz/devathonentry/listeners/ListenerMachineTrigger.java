@@ -1,15 +1,15 @@
-package me.andrewpetersen.devathonentry.listeners;
+package me.theyellowcreepz.devathonentry.listeners;
 
 /*
- * This project has been written by Andrew Petersen, and anyone who has contributed to the source code
+ * This project has been written by Yellow, and anyone who has contributed to the source code
  * (or where otherwise declared). 
  *
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import me.andrewpetersen.devathonentry.DevathonPlugin;
-import me.andrewpetersen.devathonentry.Strings;
-import me.andrewpetersen.devathonentry.util.MachineBuilder;
+import me.theyellowcreepz.devathonentry.DevathonPlugin;
+import me.theyellowcreepz.devathonentry.Strings;
+import me.theyellowcreepz.devathonentry.util.MachineBuilder;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

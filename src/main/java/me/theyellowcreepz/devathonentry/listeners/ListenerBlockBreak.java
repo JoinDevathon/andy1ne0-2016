@@ -1,12 +1,12 @@
-package me.andrewpetersen.devathonentry.listeners;
+package me.theyellowcreepz.devathonentry.listeners;
 
-import me.andrewpetersen.devathonentry.Strings;
+import me.theyellowcreepz.devathonentry.Strings;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
 /*
- * This project has been written by Andrew Petersen, and anyone who has contributed to the source code
+ * This project has been written by Yellow, and anyone who has contributed to the source code
  * (or where otherwise declared). 
  *
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 

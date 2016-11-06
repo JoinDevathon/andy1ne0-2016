@@ -1,7 +1,7 @@
-package me.andrewpetersen.devathonentry.listeners;
+package me.theyellowcreepz.devathonentry.listeners;
 
-import me.andrewpetersen.devathonentry.DevathonPlugin;
-import me.andrewpetersen.devathonentry.Strings;
+import me.theyellowcreepz.devathonentry.DevathonPlugin;
+import me.theyellowcreepz.devathonentry.Strings;
 import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_10_R1.RecipesFurnace;
 import org.bukkit.Location;
@@ -18,7 +18,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 /*
- * This project has been written by Andrew Petersen, and anyone who has contributed to the source code
+ * This project has been written by Yellow, and anyone who has contributed to the source code
  * (or where otherwise declared). 
  *
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 

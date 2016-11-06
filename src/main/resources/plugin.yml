@@ -3,5 +3,5 @@ description: A project for the Devathon contest (machine theme).
 version: 1.0.0
 author: TheYellowCreepz
 
-main: me.andrewpetersen.devathonentry.DevathonPlugin
+main: me.theyellowcreepz.devathonentry.DevathonPlugin
 

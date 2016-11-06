@@ -1,19 +1,19 @@
-package me.andrewpetersen.devathonentry.util;
+package me.theyellowcreepz.devathonentry.util;
 
 /*
- * This project has been written by Andrew Petersen, and anyone who has contributed to the source code
+ * This project has been written by Yellow, and anyone who has contributed to the source code
  * (or where otherwise declared). 
  *
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import me.andrewpetersen.devathonentry.DevathonPlugin;
-import me.andrewpetersen.devathonentry.Strings;
-import me.andrewpetersen.devathonentry.api.MachineBlock;
-import me.andrewpetersen.devathonentry.api.MachineLevel;
-import me.andrewpetersen.devathonentry.levels.FirstMachineLevel;
-import me.andrewpetersen.devathonentry.levels.SecondMachineLevel;
-import me.andrewpetersen.devathonentry.levels.ThirdMachineLevel;
+import me.theyellowcreepz.devathonentry.DevathonPlugin;
+import me.theyellowcreepz.devathonentry.Strings;
+import me.theyellowcreepz.devathonentry.api.MachineBlock;
+import me.theyellowcreepz.devathonentry.api.MachineLevel;
+import me.theyellowcreepz.devathonentry.levels.FirstMachineLevel;
+import me.theyellowcreepz.devathonentry.levels.SecondMachineLevel;
+import me.theyellowcreepz.devathonentry.levels.ThirdMachineLevel;
 import org.bukkit.*;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

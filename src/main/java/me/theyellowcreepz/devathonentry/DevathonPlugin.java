@@ -1,9 +1,9 @@
-package me.andrewpetersen.devathonentry;
+package me.theyellowcreepz.devathonentry;
 
-import me.andrewpetersen.devathonentry.listeners.ListenerBlockBreak;
-import me.andrewpetersen.devathonentry.listeners.ListenerChestClick;
-import me.andrewpetersen.devathonentry.listeners.ListenerInsertFurnaceItem;
-import me.andrewpetersen.devathonentry.listeners.ListenerMachineTrigger;
+import me.theyellowcreepz.devathonentry.listeners.ListenerBlockBreak;
+import me.theyellowcreepz.devathonentry.listeners.ListenerChestClick;
+import me.theyellowcreepz.devathonentry.listeners.ListenerInsertFurnaceItem;
+import me.theyellowcreepz.devathonentry.listeners.ListenerMachineTrigger;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
