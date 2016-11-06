@@ -1,7 +1,9 @@
 package me.andrewpetersen.devathonentry.levels;
 
 import me.andrewpetersen.devathonentry.DevathonPlugin;
+import me.andrewpetersen.devathonentry.api.MachineBlock;
 import me.andrewpetersen.devathonentry.api.MachineLevel;
+import org.bukkit.Location;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,7 @@ public class ThirdMachineLevel extends MachineLevel {
     }
 
     @Override
-    public ArrayList<MachineLevel> getBlocks() {
+    public ArrayList<MachineBlock> getBlocks(Location axisLocation) {
         return null;
     }
 }

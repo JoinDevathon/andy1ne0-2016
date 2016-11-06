@@ -38,7 +38,7 @@ public abstract class MachineLevel {
      *
      * @return Any blocks that need to be generated in this level.
      */
-    public abstract ArrayList<MachineLevel> getBlocks();
+    public abstract ArrayList<MachineBlock> getBlocks(Location axisLocation);
 
     /**
      * The method called once the construction of the level is complete.
