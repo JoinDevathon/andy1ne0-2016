@@ -1,9 +1,13 @@
 package me.andrewpetersen.devathonentry.levels;
 
 import me.andrewpetersen.devathonentry.DevathonPlugin;
+import me.andrewpetersen.devathonentry.Strings;
 import me.andrewpetersen.devathonentry.api.MachineBlock;
 import me.andrewpetersen.devathonentry.api.MachineLevel;
+import me.andrewpetersen.devathonentry.util.MachineBuilder;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.ArrayList;
 
@@ -28,9 +32,33 @@ public class FirstMachineLevel extends MachineLevel {
     public ArrayList<MachineBlock> getBlocks(Location axisLocation) {
 
         ArrayList<MachineBlock> b = new ArrayList<>();
+        axisLocation.setY(axisLocation.getY() + 1);
+        Location origin = axisLocation.clone();
+        axisLocation.setX(axisLocation.getX() - 1);
+        axisLocation.setZ(axisLocation.getZ() - 3);
+        double cloneZ = axisLocation.getZ();
+        for (double i = cloneZ; i <= cloneZ + 6; i++) {
+            axisLocation.setZ(i);
+            axisLocation.getBlock().setMetadata(Strings.META_FLAG_UNBREAKABLE, new FixedMetadataValue(this.getInstance(), false));
+            b.add(new MachineBlock(this, axisLocation.getBlock(), Material.COAL_BLOCK, false, true, true));
+        }
+        MachineBuilder.restoreOrigin(origin, axisLocation);
+        axisLocation.setX(axisLocation.getX() + 1);
+        axisLocation.setZ(axisLocation.getZ() - 3);
+        for (double i = cloneZ; i <= cloneZ + 6; i++) {
+            axisLocation.setZ(i);
+            axisLocation.getBlock().setMetadata(Strings.META_FLAG_UNBREAKABLE, new FixedMetadataValue(this.getInstance(), false));
+            b.add(new MachineBlock(this, axisLocation.getBlock(), Material.COAL_BLOCK, false, true, true));
+        }
+        MachineBuilder.restoreOrigin(origin, axisLocation);
+        axisLocation.setZ(axisLocation.getZ() + 3);
+        axisLocation.getBlock().setMetadata(Strings.META_FLAG_UNBREAKABLE, new FixedMetadataValue(this.getInstance(), false));
+        b.add(new MachineBlock(this, axisLocation.getBlock(), Material.GOLD_BLOCK, true, false, true));
+        MachineBuilder.restoreOrigin(origin, axisLocation);
+        axisLocation.setZ(axisLocation.getZ() - 3);
+        axisLocation.getBlock().setMetadata(Strings.META_FLAG_UNBREAKABLE, new FixedMetadataValue(this.getInstance(), false));
+        b.add(new MachineBlock(this, axisLocation.getBlock(), Material.GOLD_BLOCK, true, false, true));
 
-
-
-        return null;
+        return b;
     }
 }

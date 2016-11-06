@@ -1,6 +1,8 @@
 package me.andrewpetersen.devathonentry;
 
 import lombok.Getter;
+import me.andrewpetersen.devathonentry.listeners.ListenerBlockBreak;
+import me.andrewpetersen.devathonentry.listeners.ListenerMachineTrigger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -37,6 +39,8 @@ public class DevathonPlugin extends JavaPlugin {
      */
     public void registerListeners() {
         // Fill in with any event listeners later on.
+        this.getServer().getPluginManager().registerEvents(new ListenerMachineTrigger(this), this);
+        this.getServer().getPluginManager().registerEvents(new ListenerBlockBreak(), this);
     }
 
     @Override

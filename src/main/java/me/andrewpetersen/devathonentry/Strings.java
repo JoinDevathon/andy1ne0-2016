@@ -15,6 +15,7 @@ import net.md_5.bungee.api.ChatColor;
 public class Strings {
 
     public static final String FAILED_MACHINE_CREATION = ChatColor.GRAY + "" + ChatColor.ITALIC + "Ye didn't make the machine properly. Harambe is disappointed...";
+    public static final String META_FLAG_UNBREAKABLE = "devathon_breakable";
     static final String VERBOSE_PREFIX = "[VERBOSE] ";
 
 }
