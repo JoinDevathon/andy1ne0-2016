@@ -78,7 +78,7 @@ public class ListenerMachineTrigger implements Listener {
     /**
      * The method used to simplify sending the player a message when he fails to create the machine properly.
      *
-     * @param pl
+     * @param pl The player interacting.
      */
     public void failedAttempt(Player pl) {
         pl.sendMessage(Strings.FAILED_MACHINE_CREATION);

@@ -13,6 +13,11 @@ import org.bukkit.event.block.BlockBreakEvent;
  */
 public class ListenerBlockBreak implements Listener {
 
+    /**
+     * The block break event listener.
+     *
+     * @param evt The event.
+     */
     @EventHandler
     public void onBreak(BlockBreakEvent evt) {
         if (evt.getBlock() != null) {

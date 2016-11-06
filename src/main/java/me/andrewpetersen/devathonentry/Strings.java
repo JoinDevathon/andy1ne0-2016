@@ -20,6 +20,7 @@ public class Strings {
     public static final String FINISHED_MACHINE_BUILD_MESSAGE = ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Thou hath awoken Harambe. ";
     public static final String SIGN_MACHINE_PREFIX_INTERNAL = "Registered Sign";
     public static final String FINISHED_MACHINE_INSTRUCTIONS_MESSAGE = ChatColor.GREEN + "" + ChatColor.ITALIC + "Right-click on the ender chest to add items to the furnace! ";
+    public static final String ENDER_CHEST_TITLE = ChatColor.DARK_GREEN + "Add items to cook!";
     static final String VERBOSE_PREFIX = "[VERBOSE] ";
 
 }
