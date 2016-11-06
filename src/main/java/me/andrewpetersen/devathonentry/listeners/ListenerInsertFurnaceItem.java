@@ -2,16 +2,14 @@ package me.andrewpetersen.devathonentry.listeners;
 
 import me.andrewpetersen.devathonentry.DevathonPlugin;
 import me.andrewpetersen.devathonentry.Strings;
+import net.md_5.bungee.api.ChatColor;
 import net.minecraft.server.v1_10_R1.RecipesFurnace;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Sign;
 import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -110,6 +108,40 @@ public class ListenerInsertFurnaceItem implements Listener {
                                             new BukkitRunnable() {
                                                 @Override
                                                 public void run() {
+                                                    Spider spoderman = (Spider) it.getWorld().spawnEntity(it.getLocation(), EntityType.SPIDER);
+                                                    spoderman.setGlowing(true);
+                                                    Bat bat = (Bat) it.getWorld().spawnEntity(it.getLocation(), EntityType.BAT);
+                                                    bat.setGlowing(true);
+                                                    Skeleton mrSkele = (Skeleton) it.getWorld().spawnEntity(it.getLocation(), EntityType.SKELETON);
+                                                    mrSkele.setGlowing(true);
+                                                    mrSkele.setSkeletonType(Skeleton.SkeletonType.WITHER);
+                                                    mrSkele.setAI(false);
+                                                    bat.setAI(false);
+                                                    bat.setCustomName(ChatColor.GOLD + "" + ChatColor.BOLD + "Harambe Jr. ");
+                                                    bat.setCustomNameVisible(true);
+
+                                                    spoderman.setPassenger(mrSkele);
+                                                    mrSkele.setPassenger(bat);
+                                                    it.remove();
+                                                    pl.sendMessage(Strings.HARAMBE_BRINGING_ITEM_MESSAGE);
+                                                    spoderman.setTarget(pl);
+                                                    spoderman.setInvulnerable(true);
+                                                    new BukkitRunnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            if (spoderman.getLocation().distance(pl.getLocation()) < 3) {
+                                                                spoderman.setInvulnerable(false);
+                                                                spoderman.damage(100);
+                                                                bat.damage(100);
+                                                                mrSkele.damage(100);
+                                                                pl.getWorld().dropItem(spoderman.getLocation(), i);
+                                                                pl.sendMessage(Strings.HARAMBE_JOB_FINISHED);
+                                                                pl.playSound(pl.getLocation(), Sound.ENTITY_ENDERDRAGON_FIREBALL_EXPLODE, 5, 5);
+                                                                pl.sendMessage(Strings.HARAMBE_DEAD_MESSAGE);
+                                                                this.cancel();
+                                                            }
+                                                        }
+                                                    }.runTaskTimer(getInstance(), 5l, 5l);
 
                                                 }
                                             }.runTaskLater(getInstance(), 30l);
