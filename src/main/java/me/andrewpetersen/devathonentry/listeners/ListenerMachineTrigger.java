@@ -51,7 +51,7 @@ public class ListenerMachineTrigger {
                         this.failedAttempt(pl);
                     }
 
-                    if (MachineBuilder.validateBuildX(axisLocation) || MachineBuilder.validateBuildZ(axisLocation)) {
+                    if (MachineBuilder.validateBuildX(axisLocation) /*|| MachineBuilder.validateBuildZ(axisLocation)*/) {
                         this.getInstance().verbose("Construction of a machine for player " + pl.getName() + " has begun. ");
                         MachineBuilder.buildMachine(axisLocation, pl);
                     }

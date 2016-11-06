@@ -27,6 +27,8 @@ public class FirstMachineLevel extends MachineLevel {
     @Override
     public ArrayList<MachineBlock> getBlocks(Location axisLocation) {
 
+        ArrayList<MachineBlock> b = new ArrayList<>();
+
 
 
         return null;

@@ -92,13 +92,13 @@ public final class MachineBuilder {
         toReset.setZ(axis.getZ());
     }
 
-    /**
+    /*
      * Validates if the necessary structure has been built properly along the Z axis.
      *
      * @param axisLocation The axis location for the build.
      * @return Whether the ground layout is a valid machine base or not.
      */
-    public static boolean validateBuildZ(Location axisLocation) {
+    /*public static boolean validateBuildZ(Location axisLocation) {
         Location a = axisLocation.clone();
         a.setZ(a.getZ() + 1);
         a.setX(a.getX() - 3);
@@ -138,6 +138,6 @@ public final class MachineBuilder {
             return false;
         }
         return true;
-    }
+    }*/
 
 }
