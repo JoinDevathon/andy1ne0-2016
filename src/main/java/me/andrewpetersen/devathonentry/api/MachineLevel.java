@@ -7,8 +7,6 @@ package me.andrewpetersen.devathonentry.api;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import lombok.Getter;
-import lombok.Setter;
 import me.andrewpetersen.devathonentry.DevathonPlugin;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -18,8 +16,6 @@ import java.util.ArrayList;
 /**
  * The class that should be used when listing all levels that need to be generated on the machine.
  */
-@Getter
-@Setter
 public abstract class MachineLevel {
 
     private DevathonPlugin instance;
@@ -69,4 +65,11 @@ public abstract class MachineLevel {
         // Stub, override if needed.
     }
 
+    public DevathonPlugin getInstance() {
+        return this.instance;
+    }
+
+    public void setInstance(DevathonPlugin instance) {
+        this.instance = instance;
+    }
 }

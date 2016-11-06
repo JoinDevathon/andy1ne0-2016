@@ -7,16 +7,12 @@ package me.andrewpetersen.devathonentry.api;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 /**
  * The wrapper class for any blocks that need to be generated when creating a machine.
  */
-@Getter
-@Setter
 public class MachineBlock {
 
     private MachineLevel masterLevel;
@@ -63,4 +59,51 @@ public class MachineBlock {
         this.setSparkleEffect(sparkleEffect);
     }
 
+    public MachineLevel getMasterLevel() {
+        return this.masterLevel;
+    }
+
+    public void setMasterLevel(MachineLevel masterLevel) {
+        this.masterLevel = masterLevel;
+    }
+
+    public Block getBlock() {
+        return this.block;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+    }
+
+    public boolean isExplodeEffect() {
+        return this.explodeEffect;
+    }
+
+    public void setExplodeEffect(boolean explodeEffect) {
+        this.explodeEffect = explodeEffect;
+    }
+
+    public boolean isSmokeEffect() {
+        return this.smokeEffect;
+    }
+
+    public void setSmokeEffect(boolean smokeEffect) {
+        this.smokeEffect = smokeEffect;
+    }
+
+    public boolean isSparkleEffect() {
+        return this.sparkleEffect;
+    }
+
+    public void setSparkleEffect(boolean sparkleEffect) {
+        this.sparkleEffect = sparkleEffect;
+    }
+
+    public Material getMaterial() {
+        return this.material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
 }

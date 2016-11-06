@@ -7,8 +7,6 @@ package me.andrewpetersen.devathonentry.listeners;
  * This code is licensed under the GPLv3 License, a copy of which can be found in the root directory. 
  */
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import me.andrewpetersen.devathonentry.DevathonPlugin;
 import me.andrewpetersen.devathonentry.Strings;
 import me.andrewpetersen.devathonentry.util.MachineBuilder;
@@ -25,11 +23,14 @@ import org.bukkit.inventory.EquipmentSlot;
 /**
  * The listener class for when a machine creation is activated.
  */
-@RequiredArgsConstructor
-@Getter
 public class ListenerMachineTrigger implements Listener {
 
     private final DevathonPlugin instance;
+
+    @java.beans.ConstructorProperties({"instance"})
+    public ListenerMachineTrigger(DevathonPlugin instance) {
+        this.instance = instance;
+    }
 
     /**
      * The block place event listener, used to start the generation of a Machine.
@@ -84,4 +85,7 @@ public class ListenerMachineTrigger implements Listener {
         pl.sendMessage(Strings.FAILED_MACHINE_CREATION);
     }
 
+    public DevathonPlugin getInstance() {
+        return this.instance;
+    }
 }
