@@ -67,10 +67,20 @@ public class ListenerInsertFurnaceItem implements Listener {
                 net.minecraft.server.v1_10_R1.ItemStack resultPre = RecipesFurnace.getInstance().getRecipes().entrySet().stream().filter(e -> CraftItemStack.asBukkitCopy(e.getKey()).getType() == i.getType()).findFirst().get().getValue();
                 ItemStack result = CraftItemStack.asBukkitCopy(resultPre);
                 pl.getInventory().remove(i);
-                i.setType(result.getType()); // TODO move this elsewhere.
                 if (this.getInstance().registry.containsKey(pl)) {
                     Sign s = this.getInstance().registry.get(pl);
                     pl.closeInventory();
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            if (pl.getWorld().getTime() > 15000) {
+                                this.cancel();
+                            } else {
+                                pl.getWorld().setTime(pl.getWorld().getTime() + 150);
+                            }
+                        }
+                    }.runTaskTimer(this.getInstance(), 1l, 1l);
+
                     pl.sendMessage(Strings.HARAMBE_PREPARING_MEAL_MESSAGE);
                     org.bukkit.World w = pl.getWorld();
                     Location loc = s.getLocation();
@@ -78,6 +88,7 @@ public class ListenerInsertFurnaceItem implements Listener {
                     loc.setZ(loc.getZ() - 2);
                     pl.playSound(loc, Sound.ENTITY_TNT_PRIMED, 5, 5);
                     Item it = w.dropItem(loc, i);
+                    it.setGlowing(true);
                     new BukkitRunnable() {
                         @Override
                         public void run() {
@@ -87,10 +98,10 @@ public class ListenerInsertFurnaceItem implements Listener {
                                 @Override
                                 public void run() {
                                     it.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, it.getLocation(), 5);
-                                    for (int i = 30; i <= 360; i = i + 30) {
+                                    for (int i = 10; i <= 360; i = i + 10) {
                                         double rads = Math.toRadians(i);
-                                        double x = Math.cos(rads) * 3;
-                                        double z = Math.sin(rads) * 3;
+                                        double x = Math.cos(rads) * 15;
+                                        double z = Math.sin(rads) * 15;
                                         Location temp = it.getLocation().clone();
                                         temp.add(x, 0, z);
                                         Fireball f = (Fireball) it.getWorld().spawnEntity(temp, EntityType.FIREBALL);
@@ -99,12 +110,13 @@ public class ListenerInsertFurnaceItem implements Listener {
                                     new BukkitRunnable() {
                                         @Override
                                         public void run() {
-                                            it.setVelocity(new Vector(0, 0.9, -1.0));
+                                            it.setVelocity(new Vector(0, 0.9, -0.8));
                                             it.getWorld().spawnParticle(Particle.TOWN_AURA, it.getLocation(), 5);
                                             it.getWorld().spawnParticle(Particle.SPELL_WITCH, it.getLocation(), 5);
                                             it.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, it.getLocation(), 5);
                                             for (int t = 0; t < 3; t++)
                                                 it.getWorld().playSound(it.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
+
                                             new BukkitRunnable() {
                                                 @Override
                                                 public void run() {
@@ -123,6 +135,7 @@ public class ListenerInsertFurnaceItem implements Listener {
                                                     spoderman.setPassenger(mrSkele);
                                                     mrSkele.setPassenger(bat);
                                                     it.remove();
+                                                    i.setType(result.getType());
                                                     pl.sendMessage(Strings.HARAMBE_BRINGING_ITEM_MESSAGE);
                                                     spoderman.setTarget(pl);
                                                     spoderman.setInvulnerable(true);
@@ -138,6 +151,25 @@ public class ListenerInsertFurnaceItem implements Listener {
                                                                 pl.sendMessage(Strings.HARAMBE_JOB_FINISHED);
                                                                 pl.playSound(pl.getLocation(), Sound.ENTITY_ENDERDRAGON_FIREBALL_EXPLODE, 5, 5);
                                                                 pl.sendMessage(Strings.HARAMBE_DEAD_MESSAGE);
+                                                                new BukkitRunnable() {
+                                                                    int t = 0;
+
+                                                                    @Override
+                                                                    public void run() {
+                                                                        if (this.t >= 5) {
+                                                                            this.cancel();
+                                                                        }
+                                                                        for (int i = 5; i <= 360; i = i + 5) {
+                                                                            double rads = Math.toRadians(i);
+                                                                            double x = Math.cos(rads) * 15;
+                                                                            double z = Math.sin(rads) * 15;
+                                                                            Location locTemp = pl.getLocation().clone();
+                                                                            locTemp.add(x, 0, z);
+                                                                            pl.getWorld().strikeLightning(locTemp);
+                                                                        }
+                                                                        t++;
+                                                                    }
+                                                                }.runTaskTimer(getInstance(), 10l, 10l);
                                                                 this.cancel();
                                                             }
                                                         }

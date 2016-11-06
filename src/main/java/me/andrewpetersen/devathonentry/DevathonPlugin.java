@@ -8,6 +8,7 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -72,6 +73,11 @@ public class DevathonPlugin extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent evt) {
+        this.registry.remove(evt.getPlayer());
+    }
+
+    @EventHandler
+    public void onCloseInv(InventoryCloseEvent evt) {
         this.registry.remove(evt.getPlayer());
     }
 }

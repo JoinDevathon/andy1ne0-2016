@@ -48,15 +48,12 @@ public class ListenerChestClick implements Listener {
         if (evt.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (evt.getHand() != EquipmentSlot.HAND) return;
         if (evt.getClickedBlock().getState() == null) return;
-        this.getInstance().verbose("Passed the initial checks. ");
         if (evt.getClickedBlock().getState().getType() == Material.ENDER_CHEST) {
             Location loc = evt.getClickedBlock().getLocation();
             loc.setY(loc.getY() - 2);
             if (loc.getBlock() != null && (loc.getBlock().getState() instanceof Sign)) {
-                this.getInstance().verbose("It's a sign that was clicked. ");
                 Sign s = (Sign) loc.getBlock().getState();
                 if (s.getLine(0).equals(Strings.SIGN_MACHINE_PREFIX_INTERNAL)) {
-                    this.getInstance().verbose("The sign matches. ");
 
                     evt.setCancelled(true);
                     Inventory inv = Bukkit.createInventory(null, InventoryType.FURNACE, Strings.ENDER_CHEST_TITLE);
@@ -67,7 +64,6 @@ public class ListenerChestClick implements Listener {
                 }
             }
         }
-
     }
 
 }

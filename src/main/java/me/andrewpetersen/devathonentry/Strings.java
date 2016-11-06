@@ -28,7 +28,7 @@ public class Strings {
     public static final String HARAMBE_PREPARING_MEAL_MESSAGE = ChatColor.GOLD + "" + ChatColor.ITALIC + "Thy one and powerful Harambe is now using his powers to give you a tender meal... Sit tight. ";
     public static final String HARAMBE_BRINGING_ITEM_MESSAGE = ChatColor.GOLD + "" + ChatColor.ITALIC + "*Harambe calls for his son to bring you your tender meal...*";
     public static final String HARAMBE_JOB_FINISHED = ChatColor.AQUA + "Thy overlord Harambe-dawg hath given thy tender meal. ";
-    public static final String HARAMBE_DEAD_MESSAGE = ChatColor.GRAY + "" + ChatColor.ITALIC + "Oh no! You shot the gorilla! rip. ;(";
+    public static final String HARAMBE_DEAD_MESSAGE = ChatColor.GRAY + "" + ChatColor.ITALIC + "Oh no! You shot the gorilla! Rip. ";
     static final String VERBOSE_PREFIX = "[VERBOSE] ";
 
     /**
