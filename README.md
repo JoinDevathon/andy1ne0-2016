@@ -1,3 +1,20 @@
+# The Harambe Furnace. 
+Yep! You read that correctly. When the correct structure is created (using cobblestone and one coal block), Harambe's furnace will be built. This can then be used to cook food under Harambe's blessing. 
+
+Here is the layout required to spawn Harambe's furnace: http://i.imgur.com/Y5GiqGo.jpg (there should be at least 3 layers of blocks below the structure, and nothing above it.)
+
+Note: It is important to keep in mind the axis mentioned in the screenshot. If the structure is not created according to the X and Z axis in the screenshot, nothing will happen (didn't get a chance to go back and implement reverse axis support). 
+
+Once the 16 cobblestone and 1 coal block have been laid out in those exact positions, simply right-click the coal block to begin creation of the furnace! Once it is complete, a chat message will be sent. 
+
+After that, to cook items you simply need to open the chest that was placed: http://i.imgur.com/iEWZZMi.png Then, let Harambe do his magic using his furnace. 
+
+Note that this should only be used in an *open* area - otherwise, you'll find a lot of things damaged. There should also be no roof, as doing so will restrict the machine's functionality and potentially force it to self-destruct. 
+
+Ideally, I would have put more effort into this/come up with a slightly more creative idea, but circumstances providing I've been quite limited on time I've been able to spend today working on this. 
+
+---
+
 # Devathon Project
 This is the base layout for your Devathon Project. It includes several scripts to make running incredibly easy on Windows, Mac, and Linux.
 
