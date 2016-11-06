@@ -18,9 +18,20 @@ public class Strings {
     public static final String META_FLAG_UNBREAKABLE = "devathon_breakable";
     public static final String CREATING_MACHINE_MESSAGE = ChatColor.GOLD + "" + ChatColor.ITALIC + "Ye hath summoned the legacy of thy lord Harambe... ";
     public static final String FINISHED_MACHINE_BUILD_MESSAGE = ChatColor.LIGHT_PURPLE + "" + ChatColor.ITALIC + "Thou hath awoken Harambe. ";
-    public static final String SIGN_MACHINE_PREFIX_INTERNAL = "Registered Sign";
+    public static final String SIGN_MACHINE_PREFIX_INTERNAL = ChatColor.GREEN + "Regist";
     public static final String FINISHED_MACHINE_INSTRUCTIONS_MESSAGE = ChatColor.GREEN + "" + ChatColor.ITALIC + "Right-click on the ender chest to add items to the furnace! ";
     public static final String ENDER_CHEST_TITLE = ChatColor.DARK_GREEN + "Add items to cook!";
+    public static final String HARAMBE_FOOD_TITLE = ChatColor.GREEN + "Harambe's Gorilla Food (plants)";
+    public static final String FURNACE_MENU_INSTRUCTION = ChatColor.AQUA + "" + ChatColor.ITALIC + "Insert what you would like to cook... ";
+    public static final String INVALID_ITEMSTACK_ERROR = ChatColor.RED + "" + ChatColor.ITALIC + "That's not a cookable item... Harambe wouldn't like to eat that... ";
+    public static final String HARAMBE_DISAPPROVAL_MESSAGE = ChatColor.RED + "" + ChatColor.ITALIC + "Harambe is disappointed you tried to take his food... ";
+    public static final String HARAMBE_PREPARING_MEAL_MESSAGE = ChatColor.GOLD + "" + ChatColor.ITALIC + "Thy one and powerful Harambe is now using his powers to give you a tender meal... Sit tight. ";
     static final String VERBOSE_PREFIX = "[VERBOSE] ";
+
+    /**
+     * Private constructor - static utility class.
+     */
+    private Strings() {
+    }
 
 }

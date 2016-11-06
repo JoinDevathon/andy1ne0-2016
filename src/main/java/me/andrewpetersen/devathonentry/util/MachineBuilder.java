@@ -61,10 +61,13 @@ public final class MachineBuilder {
                     Location axis = axisLocation.clone();
                     axis.setZ(axis.getZ() + 4);
                     axis.getBlock().setType(Material.ENDER_CHEST);
-                    axis.setY(axis.getY() - 2);
+                    axis.setY(axis.getY() - 3);
+                    axis.getBlock().setType(Material.OBSIDIAN);
+                    axis.setY(axis.getY() + 1);
                     axis.getBlock().setType(Material.SIGN_POST);
                     Sign s = (Sign) axis.getBlock().getState();
                     s.setLine(0, Strings.SIGN_MACHINE_PREFIX_INTERNAL);
+                    s.update();
                     if (pl.isOnline()) {
                         pl.sendMessage(Strings.FINISHED_MACHINE_BUILD_MESSAGE);
                         pl.sendMessage(Strings.FINISHED_MACHINE_INSTRUCTIONS_MESSAGE);

@@ -1,16 +1,27 @@
 package me.andrewpetersen.devathonentry;
 
-import lombok.Getter;
 import me.andrewpetersen.devathonentry.listeners.ListenerBlockBreak;
+import me.andrewpetersen.devathonentry.listeners.ListenerChestClick;
+import me.andrewpetersen.devathonentry.listeners.ListenerInsertFurnaceItem;
 import me.andrewpetersen.devathonentry.listeners.ListenerMachineTrigger;
+import org.bukkit.block.Sign;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 
-public class DevathonPlugin extends JavaPlugin {
+public class DevathonPlugin extends JavaPlugin implements Listener {
 
-    @Getter
     private static DevathonPlugin instance = null;
+    public HashMap<Player, Sign> registry = new HashMap<>();
+
+    public static DevathonPlugin getInstance() {
+        return DevathonPlugin.instance;
+    }
 
     /**
      * Set the DevathonPlugin instance. Throws an IllegalStateException if the instance has already been set.
@@ -39,8 +50,11 @@ public class DevathonPlugin extends JavaPlugin {
      */
     public void registerListeners() {
         // Fill in with any event listeners later on.
+        this.getServer().getPluginManager().registerEvents(this, this);
         this.getServer().getPluginManager().registerEvents(new ListenerMachineTrigger(this), this);
         this.getServer().getPluginManager().registerEvents(new ListenerBlockBreak(), this);
+        this.getServer().getPluginManager().registerEvents(new ListenerInsertFurnaceItem(this), this);
+        this.getServer().getPluginManager().registerEvents(new ListenerChestClick(this), this);
     }
 
     @Override
@@ -54,6 +68,11 @@ public class DevathonPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         this.getServer().getLogger().log(Level.INFO, "The Devathon machine project has been disabled. ");
+    }
+
+    @EventHandler
+    public void onQuit(PlayerQuitEvent evt) {
+        this.registry.remove(evt.getPlayer());
     }
 }
 

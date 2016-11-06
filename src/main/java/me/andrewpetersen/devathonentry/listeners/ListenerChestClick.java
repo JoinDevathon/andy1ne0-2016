@@ -1,6 +1,8 @@
 package me.andrewpetersen.devathonentry.listeners;
 
+import me.andrewpetersen.devathonentry.DevathonPlugin;
 import me.andrewpetersen.devathonentry.Strings;
+import me.andrewpetersen.devathonentry.api.ItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,6 +23,20 @@ import org.bukkit.inventory.Inventory;
  */
 public class ListenerChestClick implements Listener {
 
+    private DevathonPlugin instance;
+
+    public ListenerChestClick(DevathonPlugin inst) {
+        this.setInstance(inst);
+    }
+
+    public DevathonPlugin getInstance() {
+        return instance;
+    }
+
+    public void setInstance(DevathonPlugin instance) {
+        this.instance = instance;
+    }
+
     /**
      * The chest click listener.
      *
@@ -31,15 +47,23 @@ public class ListenerChestClick implements Listener {
         if (evt.getClickedBlock() == null) return;
         if (evt.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (evt.getHand() != EquipmentSlot.HAND) return;
-        if (evt.getClickedBlock().getType() == Material.ENDER_CHEST) {
+        if (evt.getClickedBlock().getState() == null) return;
+        this.getInstance().verbose("Passed the initial checks. ");
+        if (evt.getClickedBlock().getState().getType() == Material.ENDER_CHEST) {
             Location loc = evt.getClickedBlock().getLocation();
             loc.setY(loc.getY() - 2);
-            if (loc.getBlock() != null && loc.getBlock().getState() instanceof Sign) {
+            if (loc.getBlock() != null && (loc.getBlock().getState() instanceof Sign)) {
+                this.getInstance().verbose("It's a sign that was clicked. ");
                 Sign s = (Sign) loc.getBlock().getState();
                 if (s.getLine(0).equals(Strings.SIGN_MACHINE_PREFIX_INTERNAL)) {
+                    this.getInstance().verbose("The sign matches. ");
+
                     evt.setCancelled(true);
                     Inventory inv = Bukkit.createInventory(null, InventoryType.FURNACE, Strings.ENDER_CHEST_TITLE);
-
+                    inv.setItem(1, new ItemBuilder().addTitle(Strings.HARAMBE_FOOD_TITLE).setMaterial(Material.LONG_GRASS).setQuantity(21).build());
+                    evt.getPlayer().sendMessage(Strings.FURNACE_MENU_INSTRUCTION);
+                    evt.getPlayer().openInventory(inv);
+                    this.getInstance().registry.put(evt.getPlayer(), s);
                 }
             }
         }
