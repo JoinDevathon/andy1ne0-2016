@@ -39,7 +39,7 @@ public class ListenerChestClick implements Listener {
                 if (s.getLine(0).equals(Strings.SIGN_MACHINE_PREFIX_INTERNAL)) {
                     evt.setCancelled(true);
                     Inventory inv = Bukkit.createInventory(null, InventoryType.FURNACE, Strings.ENDER_CHEST_TITLE);
-                    
+
                 }
             }
         }
